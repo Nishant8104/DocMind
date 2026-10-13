@@ -1,0 +1,49 @@
+erDiagram
+    USERS ||--o{ USER_ROLES : has
+    USERS ||--o{ DOCUMENTS : uploads
+    DOCUMENTS ||--o{ DOCUMENT_CHUNKS : contains
+    USERS ||--o{ CHAT_SESSIONS : owns
+    CHAT_SESSIONS ||--o{ CHAT_MESSAGES : contains
+
+    USERS {
+        bigint id PK
+        varchar username UK
+        varchar email UK
+        varchar password
+        varchar mobile
+    }
+    USER_ROLES {
+        bigint user_id FK
+        varchar role
+    }
+    DOCUMENTS {
+        bigint id PK
+        bigint user_id FK
+        varchar original_filename
+        varchar storage_path
+        varchar content_type
+        bigint file_size
+        varchar status
+        timestamp created_at
+    }
+    DOCUMENT_CHUNKS {
+        bigint id PK
+        bigint document_id FK
+        int chunk_index
+        int page_number
+        text content
+    }
+    CHAT_SESSIONS {
+        bigint id PK
+        bigint user_id FK
+        varchar title
+        timestamp created_at
+        timestamp updated_at
+    }
+    CHAT_MESSAGES {
+        bigint id PK
+        bigint chat_session_id FK
+        varchar role
+        text content
+        timestamp created_at
+    }
