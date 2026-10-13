@@ -46,18 +46,7 @@ public class ChatSession {
     public ChatSession() {
     }
 
-    @PrePersist
-    void onCreate() {
-        Instant now = Instant.now();
-        if (createdAt == null) createdAt = now;
-        if (updatedAt == null) updatedAt = now;
-        if (title == null || title.isBlank()) title = "New chat";
-    }
-
-    @PreUpdate
-    void onUpdate() {
-        updatedAt = Instant.now();
-    }
+ 
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
