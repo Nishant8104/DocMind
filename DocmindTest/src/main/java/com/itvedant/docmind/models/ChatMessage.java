@@ -40,10 +40,7 @@ public class ChatMessage {
     public ChatMessage() {
     }
 
-    @PrePersist
-    void onCreate() {
-        if (createdAt == null) createdAt = Instant.now();
-    }
+   
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
